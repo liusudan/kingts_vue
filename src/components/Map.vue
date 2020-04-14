@@ -1,7 +1,8 @@
 <template>
     <div id='map_container'>
         <div id="map" ref='mapView'></div> 
-        <v-header></v-header>    
+        <v-header></v-header> 
+        <v-search></v-search>   
         <router-view/>
         <v-footer ref="footer" @mapchange="mapbaseChange($event)"></v-footer>
         <v-controller></v-controller>
@@ -13,7 +14,8 @@ import mapbase from '../mapbase'
 import mapconfig from '../../config/mapconfig'
 import Header from './modal/Header';
 import Footer from './modal/Footer';
-import mapControl from './modal/mapControl'
+import mapControl from './modal/mapControl';
+import SearchUI from './modal/Search'
 import mapOptionService from '../../static/js/mapOptionService'
 export default {
   name: 'Map',
@@ -37,7 +39,8 @@ export default {
   components:{
       'v-header':Header,
       'v-footer':Footer,
-      'v-controller':mapControl
+      'v-controller':mapControl,
+      'v-search':SearchUI
   },
 }
 </script>
