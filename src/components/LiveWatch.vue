@@ -1,15 +1,44 @@
 <template>
-  <div class="hello">
-      <h1>this is LiveWatch.vue</h1>
+  <div class="menu">
+      <ul>
+        <v-menuli v-for="(item,index) in warnmenu" :key="index" :isActive='item.isActive' :text='item.text' :iconname="item.iconname" :link="item.link" @click.native="setActive(index)">
+        </v-menuli>
+      </ul>
   </div>
 </template>
 
 <script>
+import Menuli from './modal/Menu_li'
 export default {
   name: 'LiveWatch',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      warnmenu:[
+        {
+          isActive: false,
+          text:'卫星',
+          iconname:'lalien',
+          link:'/'
+        },
+        {
+          isActive: false,
+          text:'雷达',
+          iconname:'lradar',
+          link:'/warnManage/radar'
+        }
+      ]  
+    }
+  },
+  components:{
+      'v-menuli':Menuli,
+  },
+  methods:{
+    setActive:function(index){
+      this.warnmenu.forEach((el)=>{
+        el.isActive=false;
+      })
+      this.warnmenu[index].isActive=true;
     }
   }
 }
@@ -17,10 +46,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .hello{
-        position:absolute;
-        top:12%;
-        left:3%;
-        z-index:1000;
-    }
+.menu{
+  position: absolute;
+  z-index: 20;
+  top:22%;
+  left:2%;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+}
 </style>

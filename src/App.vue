@@ -44,4 +44,29 @@ html,body{
 
     /* border:none; */
 }
+/** 地图上的波纹扩散效果*/
+.css_animation_red{
+  height:20px;
+  width:20px;
+  margin: -10px -10px;
+  border-radius: 50%;
+  background: red;
+  transform: scale(0);
+  animation: myfirst 1.5s;
+  animation-iteration-count: infinite;
+}
+@keyframes myfirst{
+  to{
+      transform: scale(2);
+      background: rgba(0, 0, 0, 0);
+  }
+}
+.css_circle_red{
+  height:30px;
+  width:30px;
+  margin: -16px -16px;
+  border-radius: 50%;
+  background:transparent;
+  border:1px dashed red;
+}
 </style>

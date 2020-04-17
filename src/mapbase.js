@@ -3,6 +3,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
+import {transform} from 'ol/proj';
 var mapObj = new Map({
     // target: document.getElementById('map'),
     layers: [
@@ -16,8 +17,8 @@ var mapObj = new Map({
       })
     ],
     view: new View({
-      projection: "EPSG:4326",    //使用这个坐标系
-      center: [mapconfig.x,mapconfig.y],  //深圳
+      // projection: "EPSG:4326",    //使用这个坐标系
+      center: transform([mapconfig.x,mapconfig.y],'EPSG:4326', 'EPSG:3857'),  //深圳
       zoom: mapconfig.zoom,
       minZoom: mapconfig.minZoom,
       maxZoom: mapconfig.maxZoom,

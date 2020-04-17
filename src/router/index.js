@@ -6,6 +6,7 @@ import Login from '@/components/Login'
 import WarnManage from '@/components/WarnManage'
 import RightFocast from '@/components/RightFocast'
 import LiveWatch from '@/components/LiveWatch'
+import Radar from '../components/subcomponents/Radar'
 
 Vue.use(Router)
 
@@ -19,7 +20,13 @@ export default new Router({
       children:[
         {
           path:'/warnManage',
-          component:WarnManage
+          component:WarnManage,
+          children:[
+            {
+              path:'/radar',
+              component:Radar
+            }
+          ]
         },
         {
           path:'/liveWatch',

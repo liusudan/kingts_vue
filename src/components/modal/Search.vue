@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import mapOptionService from '../../../static/js/mapOptionService';
+import {transform} from 'ol/proj';
 export default {
   name: 'Search',
   data () {
@@ -30,9 +32,24 @@ export default {
                  tk: '9377fe1913f0b530bbe60632286c640e'
             }
         }).then(rsp => {
-            console.log(rsp);
-        }).catch(error => {
-            console.log(error);
+            // mapOptionService.removeOverlayByTitle('iconfocus0');
+            // mapOptionService.removeOverlayByTitle('iconfocus1');
+            // mapOptionService.removeOverlayByTitle('iconfocus2');
+            mapOptionService.removeOverlays(['iconfocus0','iconfocus1','iconfocus2'])
+            var data=rsp.data;
+            var centerPoint = [];
+            if (data.status == 0) {
+                centerPoint[0] = parseFloat(data.location.lon);
+                centerPoint[1] = parseFloat(data.location.lat);
+                var point = transform(centerPoint, 'EPSG:4326', 'EPSG:3857');
+                mapOptionService.setCenter(point);
+                mapOptionService.setZoom(8);
+                mapOptionService.drawCircle_Ripple('iconfocus0',point,'red');
+                mapOptionService.addFlashPoint_Ripple('iconfocus1',point,'red');
+                setTimeout(function(){
+                    mapOptionService.addFlashPoint_Ripple('iconfocus2',point,'red');
+                },700)
+            }
         })
     }
   }
@@ -109,5 +126,4 @@ export default {
   fill: darkgray;
   transition: all .1s;
 }
-
 </style>

@@ -17,13 +17,13 @@ export default {
       warnmenu:[
         {
           isActive: false,
-          text:'卫星',
+          text:'台风',
           iconname:'lalien',
           link:'/'
         },
         {
           isActive: false,
-          text:'雷达',
+          text:'火点',
           iconname:'lradar',
           link:'/'
         }

@@ -4,8 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $ from 'jquery'
+import Axios from 'axios'
 import './icons'
 
+Vue.prototype.$axios = Axios;  //在Vue的原型上添加$axios方法
 // Vue.use($);
 Vue.config.productionTip = false
 
